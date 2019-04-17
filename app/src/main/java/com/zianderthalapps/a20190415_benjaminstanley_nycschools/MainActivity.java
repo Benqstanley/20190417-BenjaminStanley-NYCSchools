@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements SchoolListAdapter
     //A member variable to store the state of a recycler view from the ListFragment
     Parcelable listState;
     boolean inDetail;
+    boolean hasListState;
     String selectedSchoolName;
     String selectedSchoolParagraph;
     String selectedSchoolDbn;
@@ -26,16 +27,22 @@ public class MainActivity extends AppCompatActivity implements SchoolListAdapter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if(savedInstanceState != null){
-            selectedSchoolName = savedInstanceState.getString(DetailFragment.schoolNameKey);
-            selectedSchoolDbn = savedInstanceState.getString(DetailFragment.dbnKey);
-            selectedSchoolParagraph = savedInstanceState.getString(DetailFragment.paragraghKey);
-            onSchoolClick(0, selectedSchoolName, selectedSchoolParagraph, selectedSchoolDbn);
+            if(savedInstanceState.getBoolean("HasState")){
+                setListState(savedInstanceState.getParcelable("ListState"));
+            }
+            if(savedInstanceState.getBoolean("InDetail")) {
+                selectedSchoolName = savedInstanceState.getString(DetailFragment.schoolNameKey);
+                selectedSchoolDbn = savedInstanceState.getString(DetailFragment.dbnKey);
+                selectedSchoolParagraph = savedInstanceState.getString(DetailFragment.paragraghKey);
+                onSchoolClick(0, selectedSchoolName, selectedSchoolParagraph, selectedSchoolDbn);
+            }
         }else {
             setListFragment();
         }
     }
     //public method so that the ListFragment can store its scroll state
     public void setListState(Parcelable listState){
+        hasListState = true;
         this.listState = listState;
     }
 
@@ -77,10 +84,15 @@ public class MainActivity extends AppCompatActivity implements SchoolListAdapter
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
+        outState.putBoolean("InDetail", inDetail);
+        outState.putBoolean("HasState", hasListState);
         if(inDetail){
             outState.putString(DetailFragment.schoolNameKey, selectedSchoolName);
             outState.putString(DetailFragment.paragraghKey, selectedSchoolParagraph);
             outState.putString(DetailFragment.dbnKey, selectedSchoolDbn);
+        }
+        if(hasListState){
+            outState.putParcelable("ListState", listState);
         }
     }
 }
