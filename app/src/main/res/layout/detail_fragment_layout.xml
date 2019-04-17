@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/school_name_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/paragraph_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/school_name_detail"
+            android:layout_margin="8dp"
+            android:textSize="16sp" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/paragraph_detail">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:textSize="18sp"
+                android:id="@+id/no_sat_information"
+                android:text="@string/no_sat_information"
+                android:layout_gravity="center"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sat_info">
+
+                <TextView
+                    android:id="@+id/math_text"
+                    style="@style/DetailScreenTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/math_avg_txt" />
+
+                <TextView
+                    android:id="@+id/crit_reading_text"
+                    style="@style/DetailScreenTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/math_text"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/crit_reading_avg_txt" />
+
+                <TextView
+                    android:id="@+id/writing_text"
+                    style="@style/DetailScreenTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/crit_reading_text"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/writing_avg_txt" />
+
+                <TextView
+                    android:id="@+id/math_score"
+                    style="@style/DetailScreenTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:id="@+id/crit_reading_score"
+                    style="@style/DetailScreenTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/math_score"
+                    android:layout_alignParentEnd="true" />
+
+                <TextView
+                    android:id="@+id/writing_score"
+                    style="@style/DetailScreenTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/crit_reading_score"
+                    android:layout_alignParentEnd="true" />
+            </RelativeLayout>
+        </FrameLayout>
+
+    </RelativeLayout>
+</ScrollView>
